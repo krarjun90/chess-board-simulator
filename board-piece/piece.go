@@ -10,11 +10,11 @@ type Move struct {
 	vPos int
 }
 
-func (m Move) getHPos() int {
+func (m Move) GetHPos() int {
 	return m.hPos
 }
 
-func (m Move) getVPos() int {
+func (m Move) GetVPos() int {
 	return m.vPos
 }
 
