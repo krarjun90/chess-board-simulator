@@ -1,4 +1,4 @@
-module technogise/chess-board
+module chess-board-simulator
 
 go 1.20
 

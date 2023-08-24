@@ -1,8 +1,8 @@
 package board_piece_test
 
 import (
+	p "chess-board-simulator/board-piece"
 	"github.com/stretchr/testify/assert"
-	p "technogise/chess-board/board-piece"
 	"testing"
 )
 

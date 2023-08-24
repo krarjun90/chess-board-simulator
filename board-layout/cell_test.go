@@ -1,8 +1,8 @@
 package board_layout_test
 
 import (
+	layout "chess-board-simulator/board-layout"
 	"github.com/stretchr/testify/assert"
-	layout "technogise/chess-board/board-layout"
 	"testing"
 )
 

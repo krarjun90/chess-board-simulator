@@ -1,12 +1,12 @@
 package board_engine_test
 
 import (
+	e "chess-board-simulator/board-engine"
+	l "chess-board-simulator/board-layout"
+	p "chess-board-simulator/board-piece"
 	"github.com/stretchr/testify/assert"
 	"sort"
 	"strings"
-	e "technogise/chess-board/board-engine"
-	l "technogise/chess-board/board-layout"
-	p "technogise/chess-board/board-piece"
 	"testing"
 )
 

@@ -2,15 +2,15 @@ package main
 
 import (
 	"bufio"
+	e "chess-board-simulator/board-engine"
+	l "chess-board-simulator/board-layout"
+	m "chess-board-simulator/messages"
+	u "chess-board-simulator/utils"
 	"fmt"
 	"os"
 	"os/signal"
 	"strings"
 	"syscall"
-	e "technogise/chess-board/board-engine"
-	l "technogise/chess-board/board-layout"
-	m "technogise/chess-board/messages"
-	u "technogise/chess-board/utils"
 )
 
 func main() {

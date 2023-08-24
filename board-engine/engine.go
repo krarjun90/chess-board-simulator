@@ -1,9 +1,9 @@
 package board_engine
 
 import (
+	b "chess-board-simulator/board-layout"
+	p "chess-board-simulator/board-piece"
 	"sort"
-	b "technogise/chess-board/board-layout"
-	p "technogise/chess-board/board-piece"
 )
 
 func SimulateMovement(layout b.BoardLayout, piece p.Piece, cell b.Cell) []string {

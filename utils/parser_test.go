@@ -1,10 +1,10 @@
 package utils_test
 
 import (
+	l "chess-board-simulator/board-layout"
+	p "chess-board-simulator/board-piece"
+	"chess-board-simulator/utils"
 	"github.com/stretchr/testify/assert"
-	l "technogise/chess-board/board-layout"
-	p "technogise/chess-board/board-piece"
-	"technogise/chess-board/utils"
 	"testing"
 )
 
