@@ -1,4 +1,4 @@
-# Chess Board Simulator
+# Chess Board Simulator ![Build and Test Workflow](https://github.com/krarjun90/chess-board-simulator/actions/workflows/go.yml/badge.svg)
 
 ## Pieces
 - King
