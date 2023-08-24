@@ -9,7 +9,11 @@ const Size = 8
 var IndexArr = []string{"A", "B", "C", "D", "E", "F", "G", "H"}
 
 type BoardLayout struct {
-	Data [][]string
+	data [][]string
+}
+
+func (b BoardLayout) GetLayout() [][]string {
+	return b.data
 }
 
 func getRow(index int) []string {
@@ -22,9 +26,9 @@ func getRow(index int) []string {
 
 func NewBoardLayout() BoardLayout {
 	b := BoardLayout{}
-	b.Data = [][]string{}
+	b.data = [][]string{}
 	for i := 0; i < Size; i++ {
-		b.Data = append(b.Data, getRow(i))
+		b.data = append(b.data, getRow(i))
 	}
 	return b
 }
@@ -33,7 +37,7 @@ func (b BoardLayout) String() string {
 	str := ""
 	for i := 0; i < 8; i++ {
 		for j := 0; j < 8; j++ {
-			str += b.Data[i][j]
+			str += b.data[i][j]
 			str += "  "
 		}
 		str += "\n"

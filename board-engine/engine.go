@@ -6,7 +6,15 @@ import (
 	"sort"
 )
 
-func SimulateMovement(layout b.BoardLayout, piece p.Piece, cell b.Cell) []string {
+type Engine struct {
+	layout b.BoardLayout
+}
+
+func NewEngine() Engine {
+	return Engine{layout: b.NewBoardLayout()}
+}
+
+func (s Engine) Simulate(piece p.Piece, cell b.Cell) []string {
 	var possibleMoves []string
 	for _, dir := range piece.GetAllowedMoveDirections() {
 		row := cell.Row
@@ -19,7 +27,7 @@ func SimulateMovement(layout b.BoardLayout, piece p.Piece, cell b.Cell) []string
 			if (col < 0 || col > 7) || (row < 0 || row > 7) {
 				break
 			}
-			possibleMoves = append(possibleMoves, layout.Data[row][col])
+			possibleMoves = append(possibleMoves, s.layout.GetLayout()[row][col])
 
 			if !piece.CanMoveMultiplePlaces() {
 				break
