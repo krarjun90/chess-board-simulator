@@ -4,7 +4,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"sort"
 	"strings"
-	engine "technogise/chess-board/board-engine"
+	e "technogise/chess-board/board-engine"
 	l "technogise/chess-board/board-layout"
 	p "technogise/chess-board/board-piece"
 	"testing"
@@ -13,8 +13,15 @@ import (
 func TestSimulatePawnMovement(t *testing.T) {
 	layout := l.NewBoardLayout()
 	square, _ := l.ParseSquare("G1")
-	movement := engine.SimulateMovement(layout, p.NewPawn(), *square)
+	movement := e.SimulateMovement(layout, p.NewPawn(), *square)
 	assert.Equal(t, []string{"G2"}, movement)
+}
+
+func TestSimulatePawnNoMovement(t *testing.T) {
+	layout := l.NewBoardLayout()
+	square, _ := l.ParseSquare("G8")
+	movement := e.SimulateMovement(layout, p.NewPawn(), *square)
+	assert.Equal(t, 0, len(movement))
 }
 
 func TestSimulateKingMovement(t *testing.T) {
@@ -24,9 +31,8 @@ func TestSimulateKingMovement(t *testing.T) {
 
 	layout := l.NewBoardLayout()
 	square, _ := l.ParseSquare("D5")
-	actualMoves := engine.SimulateMovement(layout, p.NewKing(), *square)
+	actualMoves := e.SimulateMovement(layout, p.NewKing(), *square)
 
-	sort.Strings(actualMoves)
 	assert.Equal(t, expectedMoves, actualMoves)
 }
 
@@ -37,9 +43,8 @@ func TestSimulateQueenMovement(t *testing.T) {
 
 	layout := l.NewBoardLayout()
 	square, _ := l.ParseSquare("E4")
-	actualMoves := engine.SimulateMovement(layout, p.NewQueen(), *square)
+	actualMoves := e.SimulateMovement(layout, p.NewQueen(), *square)
 
-	sort.Strings(actualMoves)
 	assert.Equal(t, expectedMoves, actualMoves)
 }
 
@@ -49,7 +54,7 @@ func TestSimulateKnightMovement(t *testing.T) {
 
 	layout := l.NewBoardLayout()
 	square, _ := l.ParseSquare("E4")
-	actualMoves := engine.SimulateMovement(layout, p.NewKnight(), *square)
+	actualMoves := e.SimulateMovement(layout, p.NewKnight(), *square)
 
 	sort.Strings(actualMoves)
 	assert.Equal(t, expectedMoves, actualMoves)

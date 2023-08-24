@@ -1,11 +1,12 @@
 package board_engine
 
 import (
-	boardLayout "technogise/chess-board/board-layout"
+	"sort"
+	b "technogise/chess-board/board-layout"
+	p "technogise/chess-board/board-piece"
 )
-import p "technogise/chess-board/board-piece"
 
-func SimulateMovement(layout boardLayout.BoardLayout, piece p.Piece, cell boardLayout.Cell) []string {
+func SimulateMovement(layout b.BoardLayout, piece p.Piece, cell b.Cell) []string {
 	var possibleMoves []string
 	for _, dir := range piece.GetAllowedMoveDirections() {
 		row := cell.Row
@@ -25,5 +26,6 @@ func SimulateMovement(layout boardLayout.BoardLayout, piece p.Piece, cell boardL
 			}
 		}
 	}
+	sort.Strings(possibleMoves)
 	return possibleMoves
 }
