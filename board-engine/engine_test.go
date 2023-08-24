@@ -43,6 +43,18 @@ func TestSimulateQueenMovement(t *testing.T) {
 	assert.Equal(t, expectedMoves, actualMoves)
 }
 
+func TestSimulateKnightMovement(t *testing.T) {
+	exp := "C3, C5, D2, D6, F2, F6, G3, G5"
+	expectedMoves := getSortedPlaces(exp)
+
+	layout := l.NewBoardLayout()
+	square, _ := l.ParseSquare("E4")
+	actualMoves := engine.SimulateMovement(layout, p.NewKnight(), *square)
+
+	sort.Strings(actualMoves)
+	assert.Equal(t, expectedMoves, actualMoves)
+}
+
 func getSortedPlaces(exp string) []string {
 	expArr := strings.Split(strings.ReplaceAll(exp, " ", ""), ",")
 	sort.Strings(expArr)

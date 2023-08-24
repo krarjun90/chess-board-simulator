@@ -36,6 +36,8 @@ func ParsePiece(p string) (Piece, error) {
 		return NewKing(), nil
 	case "queen":
 		return NewQueen(), nil
+	case "knight":
+		return NewKnight(), nil
 	default:
 		return nil, errors.New("piece not supported")
 	}
