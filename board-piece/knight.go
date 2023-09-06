@@ -4,27 +4,27 @@ type Knight struct {
 	DefaultPiece
 }
 
-func NewKnight() Knight {
-	return Knight{
+func NewKnight() Piece {
+	return &Knight{
 		DefaultPiece: DefaultPiece{
 			allowedMoves: []Move{
-				{hPos: 2, vPos: 1},
-				{hPos: 2, vPos: -1},
-				{hPos: -2, vPos: 1},
-				{hPos: -2, vPos: -1},
-				{hPos: 1, vPos: 2},
-				{hPos: 1, vPos: -2},
-				{hPos: -1, vPos: 2},
-				{hPos: -1, vPos: -2},
+				NewMove(2, 1),
+				NewMove(2, -1),
+				NewMove(-2, 1),
+				NewMove(-2, -1),
+				NewMove(1, 2),
+				NewMove(1, -2),
+				NewMove(-1, 2),
+				NewMove(-1, -2),
 			},
 			canMoveMultiplePlaces: false,
 		}}
 }
 
-func (k Knight) GetAllowedMoveDirections() []Move {
+func (k *Knight) GetAllowedMoveDirections() []Move {
 	return k.allowedMoves
 }
 
-func (k Knight) CanMoveMultiplePlaces() bool {
+func (k *Knight) CanMoveMultiplePlaces() bool {
 	return k.canMoveMultiplePlaces
 }

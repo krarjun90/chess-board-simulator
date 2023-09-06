@@ -1,62 +1,62 @@
 package board_layout_test
 
 import (
-	layout "chess-board-simulator/board-layout"
+	b "chess-board-simulator/board-layout"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestValidateCell(t *testing.T) {
-	cell, err := layout.ParseSquare("A1")
+	cell, err := b.ParseCell("A1")
 	assert.Nil(t, err)
 	assert.NotNil(t, cell)
-	assert.Equal(t, 7, cell.Row)
-	assert.Equal(t, 0, cell.Col)
+	assert.Equal(t, 7, cell.GetRankIndex())
+	assert.Equal(t, 0, cell.GetFileIndex())
 
-	cell, err = layout.ParseSquare("A8")
+	cell, err = b.ParseCell("A8")
 	assert.Nil(t, err)
 	assert.NotNil(t, cell)
-	assert.Equal(t, 0, cell.Row)
-	assert.Equal(t, 0, cell.Col)
+	assert.Equal(t, 0, cell.GetRankIndex())
+	assert.Equal(t, 0, cell.GetFileIndex())
 
-	cell, err = layout.ParseSquare("H5")
+	cell, err = b.ParseCell("H5")
 	assert.Nil(t, err)
 	assert.NotNil(t, cell)
-	assert.Equal(t, 3, cell.Row)
-	assert.Equal(t, 7, cell.Col)
+	assert.Equal(t, 3, cell.GetRankIndex())
+	assert.Equal(t, 7, cell.GetFileIndex())
 }
 
 func TestValidateInvalidRow(t *testing.T) {
-	cell, err := layout.ParseSquare("H0")
+	cell, err := b.ParseCell("H0")
 	assert.NotNil(t, err)
 	assert.Equal(t, "invalid row", err.Error())
 	assert.Nil(t, cell)
 
-	cell, err = layout.ParseSquare("H9")
+	cell, err = b.ParseCell("H9")
 	assert.NotNil(t, err)
 	assert.Equal(t, "invalid row", err.Error())
 	assert.Nil(t, cell)
 
-	cell, err = layout.ParseSquare("HH")
+	cell, err = b.ParseCell("HH")
 	assert.NotNil(t, err)
 	assert.Equal(t, "invalid row", err.Error())
 	assert.Nil(t, cell)
 }
 
 func TestValidateInvalidColumn(t *testing.T) {
-	cell, err := layout.ParseSquare("X0")
+	cell, err := b.ParseCell("X0")
 	assert.NotNil(t, err)
 	assert.Equal(t, "invalid column", err.Error())
 	assert.Nil(t, cell)
 
-	cell, err = layout.ParseSquare("11")
+	cell, err = b.ParseCell("11")
 	assert.NotNil(t, err)
 	assert.Equal(t, "invalid column", err.Error())
 	assert.Nil(t, cell)
 }
 
 func TestValidatePositionFormat(t *testing.T) {
-	cell, err := layout.ParseSquare("X11")
+	cell, err := b.ParseCell("X11")
 	assert.NotNil(t, err)
 	assert.Equal(t, "more than 2 characters: X11", err.Error())
 	assert.Nil(t, cell)

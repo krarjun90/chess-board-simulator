@@ -10,6 +10,10 @@ type Move struct {
 	vPos int
 }
 
+func NewMove(hPos, vPos int) Move {
+	return Move{hPos: hPos, vPos: vPos}
+}
+
 func (m Move) GetHPos() int {
 	return m.hPos
 }

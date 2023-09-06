@@ -8,19 +8,20 @@ import (
 	"strings"
 )
 
-func ParseInput(input string) (p.Piece, *l.Cell, error) {
+func ParseInput(input string) (*l.Cell, error) {
 	args := strings.Split(input, ",")
 	if len(args) != 2 {
-		return nil, nil, errors.New(m.InvalidInput)
+		return nil, errors.New(m.InvalidInput)
 	}
 	piece, err := p.ParsePiece(strings.TrimSpace(args[0]))
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
-	cell, err := l.ParseSquare(strings.TrimSpace(args[1]))
+	cell, err := l.ParseCell(strings.TrimSpace(args[1]))
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
-	return piece, cell, nil
+	cell.SetPiece(piece)
+	return cell, nil
 }

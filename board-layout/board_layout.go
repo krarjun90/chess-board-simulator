@@ -1,43 +1,53 @@
 package board_layout
 
 import (
-	"fmt"
+	board_piece "chess-board-simulator/board-piece"
+	"chess-board-simulator/consts"
 )
 
-const Size = 8
-
-var IndexArr = []string{"A", "B", "C", "D", "E", "F", "G", "H"}
-
 type BoardLayout struct {
-	data [][]string
+	data map[int][]*Cell
 }
 
-func (b BoardLayout) GetLayout() [][]string {
+func (b BoardLayout) GetLayout() map[int][]*Cell {
 	return b.data
 }
 
-func getRow(index int) []string {
-	var row []string
-	for i := 0; i < 8; i++ {
-		row = append(row, fmt.Sprintf("%v%v", IndexArr[i], Size-index))
+func getRow(rankIndex int) []*Cell {
+	var row []*Cell
+	for fileIndex := 0; fileIndex < consts.GridSize; fileIndex++ {
+		row = append(row, NewCell(fileIndex, rankIndex))
 	}
 	return row
 }
 
 func NewBoardLayout() BoardLayout {
 	b := BoardLayout{}
-	b.data = [][]string{}
-	for i := 0; i < Size; i++ {
-		b.data = append(b.data, getRow(i))
+	b.data = make(map[int][]*Cell, consts.GridSize)
+	for i := 0; i < consts.GridSize; i++ {
+		b.data[i] = getRow(i)
 	}
 	return b
 }
 
+func (b BoardLayout) MoveCell(cell *Cell, direction board_piece.Move) (*Cell, bool) {
+	newFile := cell.GetFileIndex() + direction.GetHPos()
+	newRank := cell.GetRankIndex() - direction.GetVPos()
+	if cellWithInGrid(newRank, newFile) {
+		return b.data[newRank][newFile], true
+	}
+	return nil, false
+}
+
+func cellWithInGrid(row, col int) bool {
+	return col >= 0 && col < consts.GridSize && row >= 0 && row < consts.GridSize
+}
+
 func (b BoardLayout) String() string {
 	str := ""
-	for i := 0; i < 8; i++ {
-		for j := 0; j < 8; j++ {
-			str += b.data[i][j]
+	for i := 0; i < consts.GridSize; i++ {
+		for j := 0; j < consts.GridSize; j++ {
+			str += b.data[i][j].GetDisplayId()
 			str += "  "
 		}
 		str += "\n"

@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	e "chess-board-simulator/board-engine"
+	e "chess-board-simulator/game-engine"
 	m "chess-board-simulator/messages"
 	u "chess-board-simulator/utils"
 	"fmt"
@@ -27,15 +27,15 @@ func main() {
 }
 
 func simulate(reader *bufio.Reader) {
-	engine := e.NewEngine()
+	engine := e.NewGameEngine()
 
 	for true {
 		input, _ := reader.ReadString('\n')
-		piece, cell, err := u.ParseInput(strings.TrimSpace(input))
+		cell, err := u.ParseInput(strings.TrimSpace(input))
 		if err != nil {
 			fmt.Println(err.Error())
 		} else {
-			fmt.Println(engine.Simulate(piece, *cell))
+			fmt.Println(strings.Join(engine.Simulate(cell), ", "))
 		}
 	}
 }

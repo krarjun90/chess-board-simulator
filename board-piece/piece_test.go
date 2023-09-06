@@ -14,9 +14,10 @@ func TestGetInvalidPiece(t *testing.T) {
 
 func TestGetDefinedPiece(t *testing.T) {
 	var testData = map[string]p.Piece{
-		"KING":  p.NewKing(),
-		"QUEEN": p.NewQueen(),
-		"PAWN":  p.NewPawn(),
+		"KING":   p.NewKing(),
+		"QUEEN":  p.NewQueen(),
+		"PAWN":   p.NewPawn(),
+		"KNIGHT": p.NewKnight(),
 	}
 
 	for k, v := range testData {
